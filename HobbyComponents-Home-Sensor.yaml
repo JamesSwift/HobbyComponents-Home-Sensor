@@ -1,7 +1,7 @@
 # These substitutions allow the end user to override certain values
 substitutions:
-  name: "hc-home-sensor"
-  friendly_name: "HC Home Sensor"
+  name: "HobbyComponents-home-sensor"
+  friendly_name: "HobbyComponents Home Sensor"
 
 
 esphome:
