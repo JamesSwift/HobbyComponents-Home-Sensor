@@ -36,7 +36,6 @@ esp8266:
 # To be able to get logs from the device via serial and api.
 logger:
 
-
 # Enable Home Assistant API
 api:
 
@@ -70,8 +69,11 @@ sensor:
     pin: 12
     temperature:
       name: "Temperature"
+    #  unit_of_measurement: oC
+    #  accuracy_decimals: 1
     humidity:
       name: "Humidity"
+    #  unit_of_measurement: RH%
       accuracy_decimals: 1
     update_interval: 15s
 
@@ -98,8 +100,8 @@ sensor:
 binary_sensor:
   # PIR motion sensor
   - platform: gpio
-    name: "Motion"
     id: motion_sensor
+    name: "Motion"
     pin: GPIO5
     device_class: motion
 
