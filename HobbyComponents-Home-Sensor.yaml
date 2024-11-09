@@ -17,7 +17,7 @@ esphome:
   project:
     name: JamesSwift.HobbyComponents-Home-Sensor
 
-    version: 0.0.1
+    version: 1.0.0
 
 
 
@@ -32,11 +32,14 @@ esphome:
 esp8266:
   board: esp01_1m
 
+
 # To be able to get logs from the device via serial and api.
-# logger:
+logger:
+
 
 # Enable Home Assistant API
 api:
+
 
 # OTA is required for Over-the-Air updating
 ota:
@@ -49,10 +52,9 @@ dashboard_import:
   import_full_config: false
 
 
-wifi:
   # Set up a wifi access point
-  ap:
-    password: "12345678"
+wifi:
+  ap: {}
 
 
 # In combination with the `ap` this allows the user
@@ -63,21 +65,20 @@ captive_portal:
 sensor:
   # DHT22 Temperature & humidity sensor
   - platform: dht
+    id: dht_sensor
     model: DHT22
     pin: 12
     temperature:
-      name: "ESP Home Sensor Temperature"
-    #  unit_of_measurement: oC
-    #  accuracy_decimals: 1
+      name: "Temperature"
     humidity:
-      name: "ESP Home Sensor Humidity"
-    #  unit_of_measurement: RH%
+      name: "Humidity"
       accuracy_decimals: 1
-    update_interval: 60s
+    update_interval: 15s
 
   # LDR brightness sensor
   - platform: adc
-    name: "ESP Home Sensor Brightness"
+    id: brightness_sensor
+    name: "Brightness"
     icon: "mdi:white-balance-sunny"
     pin: A0
     unit_of_measurement: '%'
@@ -91,13 +92,14 @@ sensor:
       #- sliding_window_moving_average:
       #    window_size: 10
       #    send_every: 1
-    update_interval: 60s
+    update_interval: 15s
 
 
 binary_sensor:
   # PIR motion sensor
   - platform: gpio
-    name: "ESP Home Sensor Motion"
+    name: "Motion"
+    id: motion_sensor
     pin: GPIO5
     device_class: motion
 
@@ -105,7 +107,7 @@ binary_sensor:
 switch:
   # Module LED
   - platform: gpio
-    name: "ESP Home Sensor LED"
+    name: "LED"
     icon: "mdi:led-on"
     pin: GPIO13
     id: led_state
